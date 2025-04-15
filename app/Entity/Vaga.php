@@ -2,6 +2,7 @@
     namespace App\Entity;
     
     use \App\Db\Database;
+    use \PDO;
 
     class Vaga{
 
@@ -65,7 +66,40 @@
          * @param string $limit
          * @return array
          */
+
+         /**
+          * Método responsável por atualizar a vaga no banco de dados
+          * @return boolean
+          */
+        public function atualizar(){
+            return (new Database('vagas'))->update('id = '.$this->id, [
+                'titulo'    =>$this->titulo,
+                'descricao' =>$this->descricao,
+                'ativo'     =>$this->ativo,
+                'data'      =>$this->data
+            ]);
+        }
+
+        /**
+         * Método responsável por excluir a vaga do banco de dados
+         * @return boolean
+         */
+        public function excluir(){
+            return (new Database('vagas'))->delete('id='.$this->id);
+        }
+
         public static function getVagas($where = null, $order = null, $limit = null){
-            return (new Database('vagas'))->select($where, $order, $limit);
+            return (new Database('vagas'))->select($where, $order, $limit)
+                                          ->fetchALL(PDO::FETCH_CLASS, self::class);
+        }
+
+        /**
+         * Método responsável por buscar uma vaga com base em seu id
+         * @param integer $id
+         * @return Vaga
+         */
+        public static function getVaga($id){
+            return (new Database('vagas'))->select('id = '.$id)
+                                          ->fetchObject(self::class);
         }
     }
