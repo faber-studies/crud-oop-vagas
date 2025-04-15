@@ -2,8 +2,6 @@
     require __DIR__.'/vendor/autoload.php';
     
     use \App\Entity\Vaga;
-    #echo "<pre>"; print_r($_POST);  echo "</pre>";
-
 
     if(isset($_POST['titulo'], $_POST['descricao'], $_POST['ativo'])){
         $obVaga = new Vaga;
@@ -11,7 +9,9 @@
         $obVaga->descricao = $_POST['descricao'];
         $obVaga->ativo = $_POST['ativo'];
         $obVaga->cadastrar();
-        #echo "<pre>"; print_r($obVaga);  echo "</pre>";
+
+        header('location: index.php?status=success');
+        exit;
     }
 
     include __DIR__.'/includes/header.php';

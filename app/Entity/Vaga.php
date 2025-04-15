@@ -1,5 +1,7 @@
 <?php
     namespace App\Entity;
+    
+    use \App\Db\Database;
 
     class Vaga{
 
@@ -31,5 +33,39 @@
          * Data de publicação da vaga
          * @var string
          */
-        public $vaga;
+        public $data;
+
+        /**
+         * Método responsável por cadastrar uma nova vaga
+         * @return boolean
+         */
+        public function cadastrar(){
+            //DEFINIR A DATA
+            $this->data = date('Y-m-d H:i:s');
+
+            //INSERIR A VAGA NO BANCO DE DADOS
+            $obDatabase = new Database('vagas');
+           
+             //ATRIBUIR O ID DA VAGA NA INSTÂNCIA
+            $this->id = $obDatabase->insert([
+                'titulo'    =>$this->titulo,
+                'descricao' =>$this->descricao,
+                'ativo'     =>$this->ativo,
+                'data'      =>$this->data
+            ]);
+            #echo "<pre>"; print_r($this); echo "</pre>"; exit;
+           
+            return true;   
+        }
+
+        /**
+         * Método responsável por obter as vagas do banco de dados
+         * @param string $where
+         * @param string $order
+         * @param string $limit
+         * @return array
+         */
+        public static function getVagas($where = null, $order = null, $limit = null){
+            return (new Database('vagas'))->select($where, $order, $limit);
+        }
     }
