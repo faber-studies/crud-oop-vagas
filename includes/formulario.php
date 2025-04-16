@@ -1,44 +1,47 @@
-<main>
-     <section>
-        <a href="index.php">
-            <button class="btn btn-success">Voltar</button>
-        </a>
-     </section>
+<main class="mt-3">
 
-     <h2 class="mt-3"><?= TITLE ?></h2>
+  <!-- Botão Voltar -->
+  <section class="mb-4">
+    <a href="index.php" class="btn btn-success">Voltar</a>
+  </section>
 
-     <form method="post">
+  <!-- Título -->
+  <h2 class="mb-4"><?= TITLE ?></h2>
 
-        <div class="form-group">
-            <label>Título</label>
-            <input type="text" class="form-control" name="titulo" value="<?= $obVaga->titulo ?>">
+  <!-- Formulário -->
+  <form method="post">
+
+    <!-- Título -->
+    <div class="form-group mb-3">
+      <label for="titulo">Título</label>
+      <input type="text" class="form-control" id="titulo" name="titulo" value="<?= $obVaga->titulo ?>">
+    </div>
+
+    <!-- Descrição -->
+    <div class="form-group mb-3">
+      <label for="descricao">Descrição</label>
+      <textarea class="form-control" id="descricao" name="descricao" rows="5"><?= $obVaga->descricao ?></textarea>
+    </div>
+
+    <!-- Status -->
+    <div class="form-group mb-4">
+      <label>Status</label>
+      <div>
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" name="ativo" id="ativo_sim" value="s" <?= $obVaga->ativo != 'n' ? 'checked' : '' ?>>
+          <label class="form-check-label" for="ativo_sim">Ativo</label>
         </div>
-
-        <div class="form-group">
-            <label>Descrição</label>
-            <textarea class="form-control" name="descricao" rows="5"><?= $obVaga->descricao ?></textarea>
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" name="ativo" id="ativo_nao" value="n" <?= $obVaga->ativo == 'n' ? 'checked' : '' ?>>
+          <label class="form-check-label" for="ativo_nao">Inativo</label>
         </div>
+      </div>
+    </div>
 
-        <div class="form-group">
-            <label>Status</label>
-            
-            <div>
-                <div class="form-check form-check-inline">
-                    <label class="form-control">
-                        <input type="radio" name="ativo" value="s" checked> Ativo
-                    </label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <label class="form-control">
-                        <input type="radio" name="ativo" value="n" <?= $obVaga->ativo == 'n' ? 'checked' : '' ?>> Inativo
-                    </label>
-                </div>
-            </div>
-        </div>
+    <!-- Botão -->
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">Enviar</button>
+    </div>
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-success">Enviar</button>
-        </div>
-
-     </form>
+  </form>
 </main>

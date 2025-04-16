@@ -8,7 +8,7 @@
   </head>
   <body class="bg-dark text-light">
     <div class="container">
-        <div class="jumbotron bg-danger">
+        <div class="jumbotron bg-danger rounded-3 p-2">
             <h1>Vagas de Emprego</h1>
             <p>Exemplo de CRUD com PHP orientado a objetos</p>
         </div>
