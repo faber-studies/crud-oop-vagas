@@ -106,7 +106,7 @@ O campo data é preenchido automaticamente com a data/hora da criação da vaga.
 
 ## 📷 Prévia
 
-![CRUD em ação](./includes/previa-projeto.mp4)
+![CRUD em ação](./includes/previa-projeto.gif)
 
 ---
 
